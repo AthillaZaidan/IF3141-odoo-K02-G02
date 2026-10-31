@@ -41,6 +41,11 @@ Catatan:
 - Menjalankan test untuk kedua kalinya pada `odoo_test` yang sama: ganti `-i` dengan `-u`.
 - Backup menyimpan dump database dan filestore ke `dump/` (tidak di-commit). Restore **menimpa** database `ODOO_DB_NAME`; jika restore gagal, skrip berhenti dengan kode error dan `web` dibiarkan mati. Dump harus dipulihkan ke nama database yang sama dengan saat di-export, karena filestore Odoo disimpan per nama database.
 
+## Data: XML untuk tim, dump untuk pribadi
+
+- Data awal atau referensi yang dipakai bersama tim (jenis, kategori, konfigurasi) ditulis sebagai **XML** di modul: `data/` (mis. `noupdate="1"`) dan `demo/` untuk data contoh. XML masuk git, bisa di-review, dan hasilnya sama di setiap mesin. Lihat `custom_addons/starter_cats/data/seed_data.xml`.
+- **Dump database** (`scripts/export_db`) hanya untuk backup pribadi atau memindahkan state sementara. Dump tidak di-commit dan tidak bisa di-review, jadi jangan dijadikan cara membagikan data tim.
+
 ## Struktur folder
 
 | Path | Isi |
