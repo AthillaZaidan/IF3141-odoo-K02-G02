@@ -1,0 +1,20 @@
+; CONTOH konfigurasi deployment. Tidak dipakai docker-compose.yml.
+[options]
+; master password database manager; ganti dengan nilai acak yang panjang
+admin_passwd = GANTI_DENGAN_PASSWORD_ACAK
+addons_path = /mnt/extras-addons
+http_port = 8069
+; sembunyikan database manager dari publik
+list_db = False
+; percayai header X-Forwarded-* dari reverse proxy
+proxy_mode = True
+; jumlah proses worker (aktifkan multiprocessing), sesuaikan dengan jumlah CPU
+workers = 2
+; batas memori keras per worker (byte) sebelum worker dimatikan
+limit_memory_hard = 2684354560
+; batas memori lunak per worker (byte) sebelum worker didaur ulang
+limit_memory_soft = 2147483648
+; kurangi verbositas log
+log_level = warn
+; jangan muat data demo
+without_demo = all
