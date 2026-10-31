@@ -1,15 +1,13 @@
 # IF3141 Sistem Informasi — Template Odoo
 
-Template tugas besar IF3141: Odoo 17 + PostgreSQL 16 lewat Docker. Yang Anda buat adalah **modul (addon)** Odoo, bukan plugin. Contoh modul yang benar ada di `custom_addons/starter_cats`.
-
-Klik **Use this template** di GitHub untuk membuat repository (private) milik kelompok.
+Template tugas besar IF3141: Odoo 17 + PostgreSQL 16 lewat Docker. Yang Anda buat adalah **modul (addon)** Odoo. Contoh modul yang benar ada di `custom_addons/starter_cats`.
 
 ## Prasyarat
 
 - Docker (Docker Desktop di Windows/Mac) dan Git
 - Python 3.11 — opsional, hanya untuk lint/IDE (bukan untuk menjalankan Odoo)
 
-## Mulai cepat
+## Quick Start
 
 ```bash
 cp .env.example .env        # Windows: copy .env.example .env
@@ -19,7 +17,7 @@ docker compose up -d
 
 Buka http://localhost:8069. Pada start pertama Odoo membuat database `odoo_app` (nama dari `ODOO_DB_NAME`); tunggu beberapa saat sampai halaman login muncul. Login awal: `admin` / `admin`. **Ganti password admin** setelah login.
 
-## Perintah harian
+## Commands
 
 | Keperluan | Perintah |
 |---|---|
@@ -44,7 +42,7 @@ Catatan:
 ## Data: XML untuk tim, dump untuk pribadi
 
 - Data awal atau referensi yang dipakai bersama tim (jenis, kategori, konfigurasi) ditulis sebagai **XML** di modul: `data/` (mis. `noupdate="1"`) dan `demo/` untuk data contoh. XML masuk git, bisa di-review, dan hasilnya sama di setiap mesin. Lihat `custom_addons/starter_cats/data/seed_data.xml`.
-- **Dump database** (`scripts/export_db`) hanya untuk backup pribadi atau memindahkan state sementara. Dump tidak di-commit dan tidak bisa di-review, jadi jangan dijadikan cara membagikan data tim.
+- **Dump database** (`scripts/export_db`) hanya untuk backup pribadi atau memindahkan state sementara. Dump tidak di-commit dan tidak bisa di-review.
 
 ## Struktur folder
 
@@ -95,10 +93,6 @@ pylint --rcfile=.pylintrc custom_addons/starter_cats
 - **Windows**: gunakan skrip `.cmd` dari Command Prompt, atau jalankan `.sh` di WSL.
 - **Modul tidak muncul di Apps**: aktifkan Developer Mode, lalu **Apps → Update Apps List**.
 
-## Versi
-
-Odoo 17 (`odoo:17`) dan PostgreSQL 16 (`postgres:16-alpine`). Image ditandai dengan tag; naikkan versinya secara sengaja, bukan otomatis.
-
 ## Keamanan: development vs deployment
 
-Konfigurasi di repository ini untuk development lokal: kredensial dari `.env` (jangan di-commit), database tidak membuka port ke host, dan `admin_passwd` (master password database manager) sengaja tidak diset. Untuk deployment, mulai dari `config/odoo.prod.conf.example` (set `admin_passwd`, `list_db = False`, `proxy_mode`, worker, batas memori) dan jangan memakai `--dev`.
+Konfigurasi di repository ini untuk development lokal: kredensial dari `.env`, database tidak membuka port ke host, dan `admin_passwd` (master password database manager) sengaja tidak diset. Untuk deployment, mulai dari `config/odoo.prod.conf.example` (set `admin_passwd`, `list_db = False`, `proxy_mode`, worker, batas memori) dan jangan memakai `--dev`.
