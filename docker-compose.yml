@@ -1,43 +1,34 @@
-version: '3.8'
-
 services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:?isi dulu di .env}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?isi dulu di .env}
+      POSTGRES_DB: postgres # DB maintenance saja, DB aplikasi dibuat Odoo
+      ODOO_DB_NAME: ${ODOO_DB_NAME:-odoo_app} # dibaca skrip backup/restore di dalam container
+    volumes:
+      - odoo-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d postgres"]
+      interval: 5s
+      retries: 10
+
   web:
-    image: odoo:17.0
+    image: odoo:17
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     ports:
-      - "8069:8069"
+      - "${ODOO_PORT:-8069}:8069"
+    environment:
+      HOST: db
+      USER: ${POSTGRES_USER:?isi dulu di .env}
+      PASSWORD: ${POSTGRES_PASSWORD:?isi dulu di .env}
     volumes:
       - ./config:/etc/odoo
       - ./custom_addons:/mnt/extras-addons
       - odoo-web-data:/var/lib/odoo
-    command: >
-      odoo 
-      --db_host=db 
-      --db_port=5432 
-      --db_user=odoo 
-      --db_password=password 
-      -i base
-      --load-language=en_US
-      --without-demo=all
-
-  db:
-    image: postgres:16-alpine
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_PASSWORD=password
-      - POSTGRES_USER=odoo
-    volumes:
-      - odoo-db-data:/var/lib/postgresql/data
-
-  alpine:
-    image: alpine:latest
-    depends_on:
-      - db
-      - web
-    volumes:
-      - odoo-web-data:/var/lib/odoo
-      - ./dump:/backup
+    command: odoo -d ${ODOO_DB_NAME:-odoo_app} --without-demo=all --dev=reload,xml
 
 volumes:
   odoo-web-data:
