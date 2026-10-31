@@ -1,106 +1,99 @@
-# IF3141 Sistem Informasi - Odoo Setup
+# IF3141 Sistem Informasi — Template Odoo
 
-## Introduction
+Template tugas besar IF3141: Odoo 17 + PostgreSQL 16 lewat Docker. Yang Anda buat adalah **modul (addon)** Odoo, bukan plugin. Contoh modul yang benar ada di `custom_addons/starter_cats`.
 
-Odoo merupakan *Enterprise Resource Planning System* yang mampu melakukan implementasi modul modul kustom untuk menyelesaikan permasalahan proses bisnis pada suatu perusahaan.
+Klik **Use this template** di GitHub untuk membuat repository (private) milik kelompok.
 
-Odoo memberikan opsi *on-premise solution* sehingga developer dapat melakukan implementasi kustom modul pada local environment.
+## Prasyarat
 
-Repository ini diperuntukkan untuk Tugas Besar IF3141 Sistem Informasi. Untuk memulai silakan melakukan fork dan membuat repository private untuk workspace setiap kelompok.
+- Docker (Docker Desktop di Windows/Mac) dan Git
+- Python 3.11 — opsional, hanya untuk lint/IDE (bukan untuk menjalankan Odoo)
 
+## Mulai cepat
 
-## Pre-requisites
-Odoo diimplementasikan dengan Python environment dan database PostgreSQL. Repository ini sudah membungkus service aplikasi dan database melalui Docker.
-
-Sebelum memulai, pastikan dependency berikut sudah terpasang:
-
-1. Docker Desktop
-	- Download: https://www.docker.com/products/docker-desktop/
-2. Python 3.11
-	- Digunakan untuk virtual environment (venv) pada proses development modul
-
-## Struktur Direktori
-
-- `/config`
-	- Untuk menyimpan konfigurasi Odoo
-- `/custom_addons`
-	- Tempat pengerjaan modul kustom
-- `/dump`
-	- Database dump yang dapat diakses scripts untuk proses import/export
-- `/scripts`
-	- Untuk melakukan database migration
-- `docker-compose.yml`
-	- Orchestration service Odoo dan PostgreSQL
-
-## Step-by-step Installation
-
-1. Jalankan service Odoo dan PostgreSQL:
-
-	```bash
-	docker compose up -d
-	```
-
-2. Buka aplikasi pada browser:
-	- http://localhost:8069
-
-3. Login menggunakan kredensial default:
-	- Username: `admin`
-	- Password: `admin`
-
-4. Aktifkan mode developer:
-	- Masuk ke **Settings**
-	- Nyalakan **Developer Mode / Developer Access**
-
-5. Buat Python virtual environment pada workspace:
-
-	```bash
-	python3.11 -m venv .venv
-	source .venv/bin/activate
-	pip install --upgrade pip
-	pip install -r requirements.txt
-	```
-
-6. Implementasikan modul pada folder:
-	- `custom_addons/`
-
-7. Setelah implementasi modul selesai, lakukan update daftar aplikasi:
-	- Masuk ke menu **Apps**
-	- Pilih **Update Apps List**
-
-8. Jika melakukan perubahan terhadap isi modul (modifying database), jangan lupa lakukan langkah database migration dengan mengikuti step di heading bawah ini.
-
-## Database Migration
-
-Odoo menggunakan local database pada implementasinya. Maka dari itu dibutuhkan migration system yang dapat dilakukan melakukan **dump db** atau **import db**. Sebelum melakukan migration jangan lupa untuk selalu mematikan service odoo & databasenya dengan menjalankan :
-
-```bash 
-docker compose down
+```bash
+cp .env.example .env        # Windows: copy .env.example .env
+# ubah POSTGRES_PASSWORD di .env
+docker compose up -d
 ```
 
-Apabila terdapat perubahan pada database dan perubahan tersebut ingin diteruskan ke anggota tim lain, lakukan export database terlebih dahulu menggunakan script pada folder `scripts`.
+Buka http://localhost:8069. Pada start pertama Odoo membuat database `odoo_app` (nama dari `ODOO_DB_NAME`); tunggu beberapa saat sampai halaman login muncul. Login awal: `admin` / `admin`. **Ganti password admin** setelah login.
 
-- macOS/Linux:
+## Perintah harian
 
-  ```bash
-  ./scripts/export_db.sh
-  ```
+| Keperluan | Perintah |
+|---|---|
+| Mulai | `docker compose up -d` |
+| Lihat log | `docker compose logs -f web` |
+| Berhenti (data tetap) | `docker compose down` |
+| Berhenti dan **MENGHAPUS data** | `docker compose down -v` |
+| Setelah mengubah Python | `docker compose restart web` |
+| Install modul | `docker compose run --rm web odoo -d odoo_app -i starter_cats --stop-after-init` |
+| Upgrade modul | `docker compose run --rm web odoo -d odoo_app -u starter_cats --stop-after-init` |
+| Test modul | `docker compose run --rm web odoo -d odoo_test -i starter_cats --test-enable --test-tags /starter_cats --stop-after-init --without-demo=all` |
+| Backup database | `./scripts/export_db.sh` (Windows: `scripts\export_db.cmd`) |
+| Restore database | `./scripts/import_db.sh` (Windows: `scripts\import_db.cmd`) |
 
-- Windows:
+Catatan:
 
-  ```bat
-  scripts\export_db.cmd
-  ```
+- Gunakan `docker compose run --rm web odoo ...`, bukan `exec`: hanya `run` melewati entrypoint yang memasang koneksi database dari `.env`.
+- Perubahan file XML dan Python dimuat ulang otomatis (`--dev=reload,xml`); perubahan model (field baru) tetap perlu **Upgrade modul**.
+- Menjalankan test untuk kedua kalinya pada `odoo_test` yang sama: ganti `-i` dengan `-u`.
+- Backup menyimpan dump database dan filestore ke `dump/` (tidak di-commit). Restore **menimpa** database `ODOO_DB_NAME`; jika restore gagal, skrip berhenti dengan kode error dan `web` dibiarkan mati. Dump harus dipulihkan ke nama database yang sama dengan saat di-export, karena filestore Odoo disimpan per nama database.
 
-Untuk melanjutkan pengerjaan dari hasil perubahan database rekan tim, lakukan import database terlebih dahulu :
+## Struktur folder
 
-- macOS/Linux:
+| Path | Isi |
+|---|---|
+| `custom_addons/` | Modul Anda (di-mount ke `/mnt/extras-addons`) |
+| `config/odoo.conf` | Konfigurasi Odoo untuk development |
+| `config/odoo.prod.conf.example` | Contoh konfigurasi deployment (tidak dipakai compose) |
+| `dump/` | Hasil backup (di-ignore git) |
+| `scripts/` | Skrip backup/restore (`.sh` dan `.cmd`) |
+| `docs/` | Daftar bab guide |
+| `DATA.md` | Pemetaan data pribadi untuk sistem Anda |
+| `.env.example` | Contoh variabel lingkungan; salin ke `.env` |
 
-  ```bash
-  ./scripts/import_db.sh
-  ```
+## Modul starter: `starter_cats`
 
-- Windows:
+Contoh modul (domain kucing) berisi model dengan chatter, state machine dengan guard, constraint, group + ACL + record rule, view `<tree>`/form/search, data awal (`noupdate`), data demo, dan test. Pasang dengan perintah **Install modul** di atas; bila modul belum muncul di **Apps**, pilih **Update Apps List**.
 
-  ```bat
-  scripts\import_db.cmd
-  ```
+## IDE dan lint
+
+Salin source Odoo agar editor bisa autocomplete (hanya file yang dibutuhkan, ±70 MB; folder di-ignore git):
+
+```bash
+mkdir .odoo-src
+docker compose run --rm -T --no-deps --entrypoint tar web cf - -C /usr/lib/python3/dist-packages --exclude=static --exclude=i18n --exclude=i18n_extra --exclude='l10n_*' --exclude='*.po' --exclude='*.pot' --exclude=demo --exclude=__pycache__ odoo | tar xf - -C .odoo-src
+```
+
+Karena `.vscode/` di-ignore, tambahkan sendiri di settings editor, mis. VS Code:
+
+```json
+{ "python.analysis.extraPaths": ["./.odoo-src"] }
+```
+
+Lint (opsional, perlu Python 3.11):
+
+```bash
+python3.11 -m venv .venv && source .venv/bin/activate   # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+pylint --rcfile=.pylintrc custom_addons/starter_cats
+```
+
+## Troubleshooting
+
+- **Port 8069 terpakai**: ubah `ODOO_PORT` di `.env`, lalu `docker compose up -d`.
+- **Docker belum menyala**: jalankan Docker Desktop / daemon dulu.
+- **`variable is missing a value`**: `.env` belum dibuat atau belum diisi.
+- **Skrip `.sh` error `Permission denied` atau `\r`**: jalankan `chmod +x scripts/*.sh`; pastikan file memakai LF (`.gitattributes` sudah mengaturnya, clone ulang bila perlu).
+- **Windows**: gunakan skrip `.cmd` dari Command Prompt, atau jalankan `.sh` di WSL.
+- **Modul tidak muncul di Apps**: aktifkan Developer Mode, lalu **Apps → Update Apps List**.
+
+## Versi
+
+Odoo 17 (`odoo:17`) dan PostgreSQL 16 (`postgres:16-alpine`). Image ditandai dengan tag; naikkan versinya secara sengaja, bukan otomatis.
+
+## Keamanan: development vs deployment
+
+Konfigurasi di repository ini untuk development lokal: kredensial dari `.env` (jangan di-commit), database tidak membuka port ke host, dan `admin_passwd` (master password database manager) sengaja tidak diset. Untuk deployment, mulai dari `config/odoo.prod.conf.example` (set `admin_passwd`, `list_db = False`, `proxy_mode`, worker, batas memori) dan jangan memakai `--dev`.
