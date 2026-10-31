@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="starter_cat_type_view_tree" model="ir.ui.view">
+        <field name="name">starter.cat.type.tree</field>
+        <field name="model">starter.cat.type</field>
+        <field name="arch" type="xml">
+            <tree editable="bottom">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="starter_cat_type_action" model="ir.actions.act_window">
+        <field name="name">Cat Types</field>
+        <field name="res_model">starter.cat.type</field>
+        <field name="view_mode">tree</field>
+    </record>
+</odoo>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- noupdate=1: data awal dimuat sekali dan tidak ditimpa saat upgrade modul. -->
+    <record id="cat_type_domestic" model="starter.cat.type">
+        <field name="name">Domestic Shorthair</field>
+    </record>
+    <record id="cat_type_persian" model="starter.cat.type">
+        <field name="name">Persian</field>
+    </record>
+    <record id="cat_type_siamese" model="starter.cat.type">
+        <field name="name">Siamese</field>
+    </record>
+</odoo>

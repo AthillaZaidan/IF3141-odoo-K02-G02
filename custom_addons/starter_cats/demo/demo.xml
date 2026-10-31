@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="demo_cat_mochi" model="starter.cat">
+        <field name="name">Mochi</field>
+        <field name="cat_type_id" ref="cat_type_persian"/>
+        <field name="birth_date">2021-03-14</field>
+    </record>
+    <record id="demo_cat_oyen" model="starter.cat">
+        <field name="name">Oyen</field>
+        <field name="cat_type_id" ref="cat_type_domestic"/>
+        <field name="birth_date">2022-07-01</field>
+        <field name="state">active</field>
+    </record>
+</odoo>

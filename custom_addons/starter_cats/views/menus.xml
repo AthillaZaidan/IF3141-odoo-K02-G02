@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_starter_cats_root" name="Starter Cats"
+              groups="group_cat_user" sequence="100"/>
+    <menuitem id="menu_starter_cat" name="Cats" parent="menu_starter_cats_root"
+              action="starter_cat_action" sequence="10"/>
+    <menuitem id="menu_starter_cat_type" name="Cat Types" parent="menu_starter_cats_root"
+              action="starter_cat_type_action" groups="group_cat_manager" sequence="20"/>
+</odoo>

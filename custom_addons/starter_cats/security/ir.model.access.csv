@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_starter_cat_user,starter.cat user,model_starter_cat,group_cat_user,1,1,1,0
+access_starter_cat_manager,starter.cat manager,model_starter_cat,group_cat_manager,1,1,1,1
+access_starter_cat_type_user,starter.cat.type user,model_starter_cat_type,group_cat_user,1,0,0,0
+access_starter_cat_type_manager,starter.cat.type manager,model_starter_cat_type,group_cat_manager,1,1,1,1
