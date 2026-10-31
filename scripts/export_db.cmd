@@ -28,13 +28,21 @@ pushd "%PROJECT_DIR%" || exit /b 1
 if not exist "%DUMP_DIR%" mkdir "%DUMP_DIR%"
 
 echo Starting db container...
-%DC% up -d db || goto :error
+%DC% up -d --wait db || goto :error
 
 echo Exporting database to: %OUT_FILE%
-%DC% exec -T db pg_dump -U odoo -d postgres -Fc > "%OUT_FILE%" || goto :error
+%DC% exec -T db sh -c "pg_dump -U \"$POSTGRES_USER\" -d \"$ODOO_DB_NAME\" -Fc" > "%OUT_FILE%" || goto :error
+for %%A in ("%OUT_FILE%") do if %%~zA==0 (
+	echo Error: database dump is empty.
+	goto :error
+)
 
 echo Exporting filestore to: %FS_FILE%
-%DC% run --rm -v odoo-web-data:/filestore alpine tar czf - -C /filestore . > "%FS_FILE%" || goto :error
+%DC% run --rm --no-deps -T --entrypoint tar web czf - -C /var/lib/odoo . > "%FS_FILE%" || goto :error
+for %%A in ("%FS_FILE%") do if %%~zA==0 (
+	echo Error: filestore archive is empty.
+	goto :error
+)
 
 echo Done. Backup files:
 echo   DB:        %OUT_FILE%
@@ -43,6 +51,8 @@ popd
 exit /b 0
 
 :error
+if exist "%OUT_FILE%" del "%OUT_FILE%"
+if exist "%FS_FILE%" del "%FS_FILE%"
 echo Export failed.
 popd
 exit /b 1

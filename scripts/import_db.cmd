@@ -43,18 +43,24 @@ echo Stopping web container...
 %DC% stop web || goto :error
 
 echo Starting db container...
-%DC% up -d db || goto :error
+%DC% up -d --wait db || goto :error
 
 echo Recreating database...
-%DC% exec -T db dropdb -U odoo --if-exists postgres || goto :error
-%DC% exec -T db createdb -U odoo postgres || goto :error
+%DC% exec -T db sh -c "dropdb -U \"$POSTGRES_USER\" --if-exists \"$ODOO_DB_NAME\" && createdb -U \"$POSTGRES_USER\" \"$ODOO_DB_NAME\"" || goto :error
 
 echo Restoring database from: %IN_FILE%
-%DC% exec -T db pg_restore -U odoo -d postgres --no-owner --clean < "%IN_FILE%"
+%DC% exec -T db sh -c "pg_restore -U \"$POSTGRES_USER\" -d \"$ODOO_DB_NAME\" --no-owner --exit-on-error" < "%IN_FILE%" || goto :error
+
+set "MODULES=0"
+for /f %%N in ('%DC% exec -T db sh -c "psql -U \"$POSTGRES_USER\" -d \"$ODOO_DB_NAME\" -tAc \"select count(*) from ir_module_module\""') do set "MODULES=%%N"
+if "%MODULES%"=="0" (
+	echo Error: restored database has no Odoo modules.
+	goto :error
+)
 
 if exist "%FS_FILE%" (
 	echo Restoring filestore from: %FS_FILE%
-	%DC% run --rm -v odoo-web-data:/filestore alpine sh -c "rm -rf /filestore/* && tar xzf - -C /filestore" < "%FS_FILE%" || goto :error
+	%DC% run --rm --no-deps -T --entrypoint sh web -c "rm -rf /var/lib/odoo/* && tar xzf - -C /var/lib/odoo" < "%FS_FILE%" || goto :error
 ) else (
 	echo Warning: No filestore backup found at %FS_FILE%, skipping.
 )
@@ -67,6 +73,6 @@ popd
 exit /b 0
 
 :error
-echo Import failed.
+echo Import failed. web is left stopped; the database may be incomplete.
 popd
 exit /b 1
