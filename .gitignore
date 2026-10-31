@@ -19,3 +19,18 @@ __pycache__/
 # IDE / Editor
 .vscode/
 .idea/
+
+# Secrets and local environment
+.env
+
+# Database dumps and filestore archives
+dump/*
+!dump/.gitkeep
+*.dump
+*.tar.gz
+
+# Odoo source copy for IDE autocomplete
+.odoo-src/
+
+# Logs
+*.log
