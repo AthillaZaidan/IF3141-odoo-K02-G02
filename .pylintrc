@@ -1,0 +1,10 @@
+[MASTER]
+load-plugins=pylint_odoo
+score=n
+manifest-required-authors=IF3141
+valid-odoo-versions=17.0
+
+[MESSAGES CONTROL]
+# Hanya aturan pylint-odoo. self.env._ baru ada di Odoo 18; di 17 pakai `from odoo import _`.
+disable=all,prefer-env-translation
+enable=odoolint

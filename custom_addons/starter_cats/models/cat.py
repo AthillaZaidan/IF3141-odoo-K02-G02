@@ -31,8 +31,12 @@ class StarterCat(models.Model):
         for cat in self:
             if cat.state != source:
                 raise UserError(
-                    _("Cannot move '%(name)s' from %(src)s to %(dst)s.")
-                    % {"name": cat.name, "src": cat.state, "dst": target}
+                    _(
+                        "Cannot move '%(name)s' from %(src)s to %(dst)s.",
+                        name=cat.name,
+                        src=cat.state,
+                        dst=target,
+                    )
                 )
         self.write({"state": target})
 
