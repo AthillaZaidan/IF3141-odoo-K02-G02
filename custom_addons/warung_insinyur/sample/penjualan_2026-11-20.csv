@@ -1,0 +1,7 @@
+id,picking_type_id/id,location_id/id,location_dest_id/id,scheduled_date,origin,move_ids/product_id,move_ids/name,move_ids/product_uom_qty,move_ids/location_id/id,move_ids/location_dest_id/id
+penjualan_2026-11-20,stock.picking_type_out,stock.stock_location_stock,stock.stock_location_customers,2026-11-20 23:00:00,Penjualan POS 2026-11-20,Indomie Goreng Telur Kornet,Indomie Goreng Telur Kornet,10,stock.stock_location_stock,stock.stock_location_customers
+,,,,,,Indomie Goreng,Indomie Goreng,8,stock.stock_location_stock,stock.stock_location_customers
+,,,,,,Indomie Kuah Telur,Indomie Kuah Telur,6,stock.stock_location_stock,stock.stock_location_customers
+,,,,,,Nasi Goreng,Nasi Goreng,5,stock.stock_location_stock,stock.stock_location_customers
+,,,,,,Kerupuk Jadul,Kerupuk Jadul,12,stock.stock_location_stock,stock.stock_location_customers
+,,,,,,Es Cincau Hijau,Es Cincau Hijau,4,stock.stock_location_stock,stock.stock_location_customers
