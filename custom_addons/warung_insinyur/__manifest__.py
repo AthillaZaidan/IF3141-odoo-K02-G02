@@ -24,5 +24,6 @@
         "data/users.xml",
         "data/pelaporan_access.xml",
     ],
+    "post_init_hook": "post_init_hook",
     "application": False,
 }
