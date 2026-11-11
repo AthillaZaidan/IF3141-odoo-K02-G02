@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- FR-03 / IW-03: takaran bahan per menu sebagai bill of materials jenis kit (phantom). -->
+
+    <record id="bom_mn_indomie_telur_kornet" model="mrp.bom">
+        <field name="product_tmpl_id" ref="mn_indomie_telur_kornet"/>
+        <field name="product_qty">1</field>
+        <field name="type">phantom</field>
+    </record>
+    <record id="bom_mn_indomie_telur_kornet_line1" model="mrp.bom.line">
+        <field name="bom_id" ref="bom_mn_indomie_telur_kornet"/>
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_indomie_goreng'))]"/>
+        <field name="product_qty">1</field>
+    </record>
+    <record id="bom_mn_indomie_telur_kornet_line2" model="mrp.bom.line">
+        <field name="bom_id" ref="bom_mn_indomie_telur_kornet"/>
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_telur'))]"/>
+        <field name="product_qty">1</field>
+    </record>
+    <record id="bom_mn_indomie_telur_kornet_line3" model="mrp.bom.line">
+        <field name="bom_id" ref="bom_mn_indomie_telur_kornet"/>
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_kornet'))]"/>
+        <field name="product_qty">0.03</field>
+    </record>
+
+    <record id="bom_mn_indomie_goreng" model="mrp.bom">
+        <field name="product_tmpl_id" ref="mn_indomie_goreng"/>
+        <field name="product_qty">1</field>
+        <field name="type">phantom</field>
+    </record>
+    <record id="bom_mn_indomie_goreng_line1" model="mrp.bom.line">
+        <field name="bom_id" ref="bom_mn_indomie_goreng"/>
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_indomie_goreng'))]"/>
+        <field name="product_qty">1</field>
+    </record>
+
+    <record id="bom_mn_indomie_kuah_telur" model="mrp.bom">
+        <field name="product_tmpl_id" ref="mn_indomie_kuah_telur"/>
+        <field name="product_qty">1</field>
+        <field name="type">phantom</field>
+    </record>
+    <record id="bom_mn_indomie_kuah_telur_line1" model="mrp.bom.line">
+        <field name="bom_id" ref="bom_mn_indomie_kuah_telur"/>
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_indomie_kuah'))]"/>
+        <field name="product_qty">1</field>
+    </record>
+    <record id="bom_mn_indomie_kuah_telur_line2" model="mrp.bom.line">
+        <field name="bom_id" ref="bom_mn_indomie_kuah_telur"/>
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_telur'))]"/>
+        <field name="product_qty">1</field>
+    </record>
+
+    <record id="bom_mn_nasi_goreng" model="mrp.bom">
+        <field name="product_tmpl_id" ref="mn_nasi_goreng"/>
+        <field name="product_qty">1</field>
+        <field name="type">phantom</field>
+    </record>
+    <record id="bom_mn_nasi_goreng_line1" model="mrp.bom.line">
+        <field name="bom_id" ref="bom_mn_nasi_goreng"/>
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_beras'))]"/>
+        <field name="product_qty">0.15</field>
+    </record>
+    <record id="bom_mn_nasi_goreng_line2" model="mrp.bom.line">
+        <field name="bom_id" ref="bom_mn_nasi_goreng"/>
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_telur'))]"/>
+        <field name="product_qty">1</field>
+    </record>
+    <record id="bom_mn_nasi_goreng_line3" model="mrp.bom.line">
+        <field name="bom_id" ref="bom_mn_nasi_goreng"/>
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_minyak'))]"/>
+        <field name="product_qty">0.02</field>
+    </record>
+    <record id="bom_mn_nasi_goreng_line4" model="mrp.bom.line">
+        <field name="bom_id" ref="bom_mn_nasi_goreng"/>
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_bawang_merah'))]"/>
+        <field name="product_qty">0.01</field>
+    </record>
+
+    <record id="bom_mn_kerupuk_jadul" model="mrp.bom">
+        <field name="product_tmpl_id" ref="mn_kerupuk_jadul"/>
+        <field name="product_qty">1</field>
+        <field name="type">phantom</field>
+    </record>
+    <record id="bom_mn_kerupuk_jadul_line1" model="mrp.bom.line">
+        <field name="bom_id" ref="bom_mn_kerupuk_jadul"/>
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_kerupuk'))]"/>
+        <field name="product_qty">1</field>
+    </record>
+
+    <record id="bom_mn_cincau_hijau" model="mrp.bom">
+        <field name="product_tmpl_id" ref="mn_cincau_hijau"/>
+        <field name="product_qty">1</field>
+        <field name="type">phantom</field>
+    </record>
+    <record id="bom_mn_cincau_hijau_line1" model="mrp.bom.line">
+        <field name="bom_id" ref="bom_mn_cincau_hijau"/>
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_cincau'))]"/>
+        <field name="product_qty">0.1</field>
+    </record>
+    <record id="bom_mn_cincau_hijau_line2" model="mrp.bom.line">
+        <field name="bom_id" ref="bom_mn_cincau_hijau"/>
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_gula_aren'))]"/>
+        <field name="product_qty">0.03</field>
+    </record>
+    <record id="bom_mn_cincau_hijau_line3" model="mrp.bom.line">
+        <field name="bom_id" ref="bom_mn_cincau_hijau"/>
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_santan'))]"/>
+        <field name="product_qty">0.05</field>
+    </record>
+    <record id="bom_mn_cincau_hijau_line4" model="mrp.bom.line">
+        <field name="bom_id" ref="bom_mn_cincau_hijau"/>
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_es_batu'))]"/>
+        <field name="product_qty">0.15</field>
+    </record>
+</odoo>

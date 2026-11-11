@@ -17,6 +17,7 @@
         "data/partners.xml",
         "data/products_bahan.xml",
         "data/products_menu.xml",
+        "data/bom_takaran.xml",
     ],
     "application": False,
 }
