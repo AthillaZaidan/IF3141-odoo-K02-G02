@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- FR-09 / IW-04: batas stok minimum dan maksimum per bahan dan lokasi. DATA UJI. -->
+
+    <record id="op_bhn_indomie_goreng" model="stock.warehouse.orderpoint">
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_indomie_goreng'))]"/>
+        <field name="warehouse_id" ref="stock.warehouse0"/>
+        <field name="location_id" ref="loc_kitchen"/>
+        <field name="product_min_qty">40</field>
+        <field name="product_max_qty">120</field>
+        <field name="route_id" ref="purchase_stock.route_warehouse0_buy"/>
+        <field name="trigger">auto</field>
+    </record>
+
+    <record id="op_bhn_indomie_kuah" model="stock.warehouse.orderpoint">
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_indomie_kuah'))]"/>
+        <field name="warehouse_id" ref="stock.warehouse0"/>
+        <field name="location_id" ref="loc_kitchen"/>
+        <field name="product_min_qty">20</field>
+        <field name="product_max_qty">60</field>
+        <field name="route_id" ref="purchase_stock.route_warehouse0_buy"/>
+        <field name="trigger">auto</field>
+    </record>
+
+    <record id="op_bhn_telur" model="stock.warehouse.orderpoint">
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_telur'))]"/>
+        <field name="warehouse_id" ref="stock.warehouse0"/>
+        <field name="location_id" ref="loc_kitchen"/>
+        <field name="product_min_qty">30</field>
+        <field name="product_max_qty">90</field>
+        <field name="route_id" ref="purchase_stock.route_warehouse0_buy"/>
+        <field name="trigger">auto</field>
+    </record>
+
+    <record id="op_bhn_kornet" model="stock.warehouse.orderpoint">
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_kornet'))]"/>
+        <field name="warehouse_id" ref="stock.warehouse0"/>
+        <field name="location_id" ref="loc_kitchen"/>
+        <field name="product_min_qty">1</field>
+        <field name="product_max_qty">3</field>
+        <field name="route_id" ref="purchase_stock.route_warehouse0_buy"/>
+        <field name="trigger">auto</field>
+    </record>
+
+    <record id="op_bhn_bawang_merah" model="stock.warehouse.orderpoint">
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_bawang_merah'))]"/>
+        <field name="warehouse_id" ref="stock.warehouse0"/>
+        <field name="location_id" ref="loc_kitchen"/>
+        <field name="product_min_qty">0.5</field>
+        <field name="product_max_qty">2</field>
+        <field name="route_id" ref="purchase_stock.route_warehouse0_buy"/>
+        <field name="trigger">auto</field>
+    </record>
+
+    <record id="op_bhn_kerupuk" model="stock.warehouse.orderpoint">
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_kerupuk'))]"/>
+        <field name="warehouse_id" ref="stock.warehouse0"/>
+        <field name="location_id" ref="loc_kitchen"/>
+        <field name="product_min_qty">50</field>
+        <field name="product_max_qty">150</field>
+        <field name="route_id" ref="purchase_stock.route_warehouse0_buy"/>
+        <field name="trigger">auto</field>
+    </record>
+
+    <record id="op_bhn_beras" model="stock.warehouse.orderpoint">
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_beras'))]"/>
+        <field name="warehouse_id" ref="stock.warehouse0"/>
+        <field name="location_id" ref="loc_gudang"/>
+        <field name="product_min_qty">5</field>
+        <field name="product_max_qty">15</field>
+        <field name="route_id" ref="purchase_stock.route_warehouse0_buy"/>
+        <field name="trigger">auto</field>
+    </record>
+
+    <record id="op_bhn_minyak" model="stock.warehouse.orderpoint">
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_minyak'))]"/>
+        <field name="warehouse_id" ref="stock.warehouse0"/>
+        <field name="location_id" ref="loc_gudang"/>
+        <field name="product_min_qty">2</field>
+        <field name="product_max_qty">6</field>
+        <field name="route_id" ref="purchase_stock.route_warehouse0_buy"/>
+        <field name="trigger">auto</field>
+    </record>
+
+    <record id="op_bhn_cincau" model="stock.warehouse.orderpoint">
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_cincau'))]"/>
+        <field name="warehouse_id" ref="stock.warehouse0"/>
+        <field name="location_id" ref="loc_bar"/>
+        <field name="product_min_qty">1</field>
+        <field name="product_max_qty">4</field>
+        <field name="route_id" ref="purchase_stock.route_warehouse0_buy"/>
+        <field name="trigger">auto</field>
+    </record>
+
+    <record id="op_bhn_gula_aren" model="stock.warehouse.orderpoint">
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_gula_aren'))]"/>
+        <field name="warehouse_id" ref="stock.warehouse0"/>
+        <field name="location_id" ref="loc_bar"/>
+        <field name="product_min_qty">1</field>
+        <field name="product_max_qty">3</field>
+        <field name="route_id" ref="purchase_stock.route_warehouse0_buy"/>
+        <field name="trigger">auto</field>
+    </record>
+
+    <record id="op_bhn_santan" model="stock.warehouse.orderpoint">
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_santan'))]"/>
+        <field name="warehouse_id" ref="stock.warehouse0"/>
+        <field name="location_id" ref="loc_bar"/>
+        <field name="product_min_qty">1</field>
+        <field name="product_max_qty">3</field>
+        <field name="route_id" ref="purchase_stock.route_warehouse0_buy"/>
+        <field name="trigger">auto</field>
+    </record>
+
+    <record id="op_bhn_es_batu" model="stock.warehouse.orderpoint">
+        <field name="product_id" search="[('product_tmpl_id', '=', ref('bhn_es_batu'))]"/>
+        <field name="warehouse_id" ref="stock.warehouse0"/>
+        <field name="location_id" ref="loc_bar"/>
+        <field name="product_min_qty">5</field>
+        <field name="product_max_qty">20</field>
+        <field name="route_id" ref="purchase_stock.route_warehouse0_buy"/>
+        <field name="trigger">auto</field>
+    </record>
+</odoo>
