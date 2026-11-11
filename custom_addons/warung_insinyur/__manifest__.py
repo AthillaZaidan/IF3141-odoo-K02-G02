@@ -10,6 +10,8 @@
         "purchase_stock",
         "mrp",
         "l10n_id",  # chart of accounts Indonesia -> mata uang perusahaan IDR
+        "spreadsheet_dashboard_stock_account",
+        "spreadsheet_dashboard_purchase_stock",
     ],
     "data": [
         "data/company_settings.xml",
@@ -20,6 +22,7 @@
         "data/bom_takaran.xml",
         "data/orderpoints.xml",
         "data/users.xml",
+        "data/pelaporan_access.xml",
     ],
     "application": False,
 }

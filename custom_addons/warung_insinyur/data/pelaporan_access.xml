@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- QR-2 / CR-1: dasbor operasional hanya untuk Owner, Supervisor, dan Head Store.
+         Bawaan Odoo hanya membuka dasbor untuk Administrator Inventaris/Pembelian,
+         sehingga Head Store (bukan administrator) tidak bisa melihatnya.
+         Grup ini memberi akses baca dasbor tanpa memberi hak menerapkan stok. -->
+    <record id="module_category_warung_insinyur" model="ir.module.category">
+        <field name="name">Warung Insinyur</field>
+        <field name="sequence">90</field>
+    </record>
+
+    <record id="group_pelaporan_operasional" model="res.groups">
+        <field name="name">Pelaporan Operasional</field>
+        <field name="category_id" ref="module_category_warung_insinyur"/>
+        <field name="users" eval="[(4, ref('user_owner')), (4, ref('user_supervisor')), (4, ref('user_head_store')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+    <record id="spreadsheet_dashboard_stock_account.spreadsheet_dashboard_inventory_on_hand" model="spreadsheet.dashboard">
+        <field name="group_ids" eval="[(4, ref('group_pelaporan_operasional'))]"/>
+    </record>
+    <record id="spreadsheet_dashboard_purchase_stock.spreadsheet_dashboard_purchase" model="spreadsheet.dashboard">
+        <field name="group_ids" eval="[(4, ref('group_pelaporan_operasional'))]"/>
+    </record>
+
+    <!-- Menu Dashboard disembunyikan dari Kasir dan Penanggung Jawab Stok. -->
+    <record id="spreadsheet_dashboard.spreadsheet_dashboard_menu_root" model="ir.ui.menu">
+        <field name="groups_id" eval="[(6, 0, [ref('group_pelaporan_operasional'), ref('base.group_system')])]"/>
+    </record>
+</odoo>
