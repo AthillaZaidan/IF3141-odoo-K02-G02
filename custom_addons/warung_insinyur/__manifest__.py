@@ -19,6 +19,7 @@
         "data/products_menu.xml",
         "data/bom_takaran.xml",
         "data/orderpoints.xml",
+        "data/users.xml",
     ],
     "application": False,
 }

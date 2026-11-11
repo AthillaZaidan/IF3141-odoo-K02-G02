@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- FR-13 / IW-12: lima akun sesuai peran (AR-1, maksimal 5 akun).
+         Nama, email, dan kata sandi adalah DATA UJI untuk lingkungan lokal.
+         Ganti kata sandi sebelum dipakai di luar development. -->
+
+    <!-- A-01 Owner: melihat seluruh laporan dan menyetujui. -->
+    <record id="user_owner" model="res.users">
+        <field name="name">Owner Warung</field>
+        <field name="login">owner@warunginsinyur.test</field>
+        <field name="email">owner@warunginsinyur.test</field>
+        <field name="password">owner12345</field>
+        <field name="tz">Asia/Jakarta</field>
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_user'), ref('base.group_allow_export'), ref('stock.group_stock_manager'), ref('purchase.group_purchase_manager'), ref('mrp.group_mrp_manager')])]"/>
+    </record>
+
+    <!-- A-02 Supervisor: administrator sistem (OW-01), pengadaan, takaran, batas stok, akun. -->
+    <record id="user_supervisor" model="res.users">
+        <field name="name">Supervisor Operasional</field>
+        <field name="login">supervisor@warunginsinyur.test</field>
+        <field name="email">supervisor@warunginsinyur.test</field>
+        <field name="password">supervisor12345</field>
+        <field name="tz">Asia/Jakarta</field>
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_user'), ref('base.group_allow_export'), ref('base.group_erp_manager'), ref('stock.group_stock_manager'), ref('purchase.group_purchase_manager'), ref('mrp.group_mrp_manager')])]"/>
+    </record>
+
+    <!-- A-03 Head Store: data bahan, usulan takaran, tinjauan selisih > 2%. -->
+    <record id="user_head_store" model="res.users">
+        <field name="name">Head Store</field>
+        <field name="login">headstore@warunginsinyur.test</field>
+        <field name="email">headstore@warunginsinyur.test</field>
+        <field name="password">headstore12345</field>
+        <field name="tz">Asia/Jakarta</field>
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_user'), ref('stock.group_stock_user'), ref('mrp.group_mrp_user')])]"/>
+    </record>
+
+    <!-- A-04 Kasir: impor penjualan harian dari POS (FR-06). -->
+    <record id="user_kasir" model="res.users">
+        <field name="name">Kasir</field>
+        <field name="login">kasir@warunginsinyur.test</field>
+        <field name="email">kasir@warunginsinyur.test</field>
+        <field name="password">kasir12345</field>
+        <field name="tz">Asia/Jakarta</field>
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_user'), ref('stock.group_stock_user')])]"/>
+    </record>
+
+    <!-- A-05 Penanggung Jawab Stok: hitung stok closing dan penerimaan barang (FR-04, FR-05). -->
+    <record id="user_pj_stok" model="res.users">
+        <field name="name">Penanggung Jawab Stok</field>
+        <field name="login">pjstok@warunginsinyur.test</field>
+        <field name="email">pjstok@warunginsinyur.test</field>
+        <field name="password">pjstok12345</field>
+        <field name="tz">Asia/Jakarta</field>
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_user'), ref('stock.group_stock_user')])]"/>
+    </record>
+</odoo>
