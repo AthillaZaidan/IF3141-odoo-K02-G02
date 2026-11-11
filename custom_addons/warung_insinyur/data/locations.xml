@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- IW-01: lokasi penyimpanan bahan. Ketiganya berada di bawah WH/Stock. -->
+    <record id="loc_kitchen" model="stock.location">
+        <field name="name">Kitchen</field>
+        <field name="usage">internal</field>
+        <field name="location_id" ref="stock.stock_location_stock"/>
+    </record>
+    <record id="loc_bar" model="stock.location">
+        <field name="name">Bar</field>
+        <field name="usage">internal</field>
+        <field name="location_id" ref="stock.stock_location_stock"/>
+    </record>
+    <record id="loc_gudang" model="stock.location">
+        <field name="name">Gudang</field>
+        <field name="usage">internal</field>
+        <field name="location_id" ref="stock.stock_location_stock"/>
+    </record>
+</odoo>

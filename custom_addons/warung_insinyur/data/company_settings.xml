@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- CR-4: mata uang Rupiah (IDR). -->
+    <record id="base.IDR" model="res.currency">
+        <field name="active" eval="True"/>
+    </record>
+
+    <record id="base.main_company" model="res.company">
+        <field name="name">Warung Insinyur</field>
+        <field name="street">Jl. Ir. H. Juanda No. 21</field>
+        <field name="city">Bandung</field>
+        <field name="country_id" ref="base.id"/>
+        <field name="currency_id" ref="base.IDR"/>
+    </record>
+
+    <record id="stock.warehouse0" model="stock.warehouse">
+        <field name="name">Warung Insinyur</field>
+    </record>
+
+    <record id="base.user_admin" model="res.users">
+        <field name="tz">Asia/Jakarta</field>
+    </record>
+
+    <!-- Pengaturan Inventory: banyak lokasi penyimpanan (kitchen, bar, gudang)
+         dan satuan ukur (kg, liter, unit). Sama dengan mencentang Settings. -->
+    <record id="base.group_user" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('stock.group_stock_multi_locations')), (4, ref('uom.group_uom'))]"/>
+    </record>
+</odoo>
