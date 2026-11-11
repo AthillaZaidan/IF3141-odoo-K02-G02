@@ -14,6 +14,9 @@
     "data": [
         "data/company_settings.xml",
         "data/locations.xml",
+        "data/partners.xml",
+        "data/products_bahan.xml",
+        "data/products_menu.xml",
     ],
     "application": False,
 }

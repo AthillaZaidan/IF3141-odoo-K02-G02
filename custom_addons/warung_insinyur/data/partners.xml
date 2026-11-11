@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- IW-02: supplier grup hotel. Kontak di bawah adalah DATA UJI. -->
+    <record id="partner_supplier_grup_hotel" model="res.partner">
+        <field name="name">Supplier Grup Hotel (Data Uji)</field>
+        <field name="is_company" eval="True"/>
+        <field name="supplier_rank">1</field>
+        <field name="city">Bandung</field>
+        <field name="country_id" ref="base.id"/>
+        <field name="phone">+62 800-0000-0000</field>
+        <field name="comment">Pesanan pembelian dikirim manual dalam bentuk PDF melalui WhatsApp (AR-3).</field>
+    </record>
+</odoo>

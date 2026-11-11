@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- IW-01, IW-02: data induk bahan beserta satuan dan supplier utama. DATA UJI. -->
+    <record id="categ_bahan" model="product.category">
+        <field name="name">Bahan Baku</field>
+    </record>
+    <record id="categ_menu" model="product.category">
+        <field name="name">Menu</field>
+    </record>
+
+    <record id="bhn_indomie_goreng" model="product.template">
+        <field name="name">Mi Instan Indomie Goreng (bungkus)</field>
+        <field name="default_code">BHN-001</field>
+        <field name="detailed_type">product</field>
+        <field name="categ_id" ref="categ_bahan"/>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        <field name="standard_price">3000</field>
+        <field name="sale_ok" eval="False"/>
+        <field name="purchase_ok" eval="True"/>
+        <field name="route_ids" eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy')])]"/>
+        <field name="seller_ids" eval="[(0, 0, {'partner_id': ref('partner_supplier_grup_hotel'), 'price': 3000, 'min_qty': 1})]"/>
+    </record>
+
+    <record id="bhn_indomie_kuah" model="product.template">
+        <field name="name">Mi Instan Indomie Kuah Soto (bungkus)</field>
+        <field name="default_code">BHN-002</field>
+        <field name="detailed_type">product</field>
+        <field name="categ_id" ref="categ_bahan"/>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        <field name="standard_price">3000</field>
+        <field name="sale_ok" eval="False"/>
+        <field name="purchase_ok" eval="True"/>
+        <field name="route_ids" eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy')])]"/>
+        <field name="seller_ids" eval="[(0, 0, {'partner_id': ref('partner_supplier_grup_hotel'), 'price': 3000, 'min_qty': 1})]"/>
+    </record>
+
+    <record id="bhn_telur" model="product.template">
+        <field name="name">Telur Ayam</field>
+        <field name="default_code">BHN-003</field>
+        <field name="detailed_type">product</field>
+        <field name="categ_id" ref="categ_bahan"/>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        <field name="standard_price">2000</field>
+        <field name="sale_ok" eval="False"/>
+        <field name="purchase_ok" eval="True"/>
+        <field name="route_ids" eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy')])]"/>
+        <field name="seller_ids" eval="[(0, 0, {'partner_id': ref('partner_supplier_grup_hotel'), 'price': 2000, 'min_qty': 1})]"/>
+    </record>
+
+    <record id="bhn_kornet" model="product.template">
+        <field name="name">Kornet Sapi</field>
+        <field name="default_code">BHN-004</field>
+        <field name="detailed_type">product</field>
+        <field name="categ_id" ref="categ_bahan"/>
+        <field name="uom_id" ref="uom.product_uom_kgm"/>
+        <field name="uom_po_id" ref="uom.product_uom_kgm"/>
+        <field name="standard_price">120000</field>
+        <field name="sale_ok" eval="False"/>
+        <field name="purchase_ok" eval="True"/>
+        <field name="route_ids" eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy')])]"/>
+        <field name="seller_ids" eval="[(0, 0, {'partner_id': ref('partner_supplier_grup_hotel'), 'price': 120000, 'min_qty': 1})]"/>
+    </record>
+
+    <record id="bhn_bawang_merah" model="product.template">
+        <field name="name">Bawang Merah</field>
+        <field name="default_code">BHN-005</field>
+        <field name="detailed_type">product</field>
+        <field name="categ_id" ref="categ_bahan"/>
+        <field name="uom_id" ref="uom.product_uom_kgm"/>
+        <field name="uom_po_id" ref="uom.product_uom_kgm"/>
+        <field name="standard_price">40000</field>
+        <field name="sale_ok" eval="False"/>
+        <field name="purchase_ok" eval="True"/>
+        <field name="route_ids" eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy')])]"/>
+        <field name="seller_ids" eval="[(0, 0, {'partner_id': ref('partner_supplier_grup_hotel'), 'price': 40000, 'min_qty': 1})]"/>
+    </record>
+
+    <record id="bhn_kerupuk" model="product.template">
+        <field name="name">Kerupuk Jadul Mentah</field>
+        <field name="default_code">BHN-006</field>
+        <field name="detailed_type">product</field>
+        <field name="categ_id" ref="categ_bahan"/>
+        <field name="uom_id" ref="uom.product_uom_unit"/>
+        <field name="uom_po_id" ref="uom.product_uom_unit"/>
+        <field name="standard_price">500</field>
+        <field name="sale_ok" eval="False"/>
+        <field name="purchase_ok" eval="True"/>
+        <field name="route_ids" eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy')])]"/>
+        <field name="seller_ids" eval="[(0, 0, {'partner_id': ref('partner_supplier_grup_hotel'), 'price': 500, 'min_qty': 1})]"/>
+    </record>
+
+    <record id="bhn_beras" model="product.template">
+        <field name="name">Beras</field>
+        <field name="default_code">BHN-007</field>
+        <field name="detailed_type">product</field>
+        <field name="categ_id" ref="categ_bahan"/>
+        <field name="uom_id" ref="uom.product_uom_kgm"/>
+        <field name="uom_po_id" ref="uom.product_uom_kgm"/>
+        <field name="standard_price">14000</field>
+        <field name="sale_ok" eval="False"/>
+        <field name="purchase_ok" eval="True"/>
+        <field name="route_ids" eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy')])]"/>
+        <field name="seller_ids" eval="[(0, 0, {'partner_id': ref('partner_supplier_grup_hotel'), 'price': 14000, 'min_qty': 1})]"/>
+    </record>
+
+    <record id="bhn_minyak" model="product.template">
+        <field name="name">Minyak Goreng</field>
+        <field name="default_code">BHN-008</field>
+        <field name="detailed_type">product</field>
+        <field name="categ_id" ref="categ_bahan"/>
+        <field name="uom_id" ref="uom.product_uom_litre"/>
+        <field name="uom_po_id" ref="uom.product_uom_litre"/>
+        <field name="standard_price">18000</field>
+        <field name="sale_ok" eval="False"/>
+        <field name="purchase_ok" eval="True"/>
+        <field name="route_ids" eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy')])]"/>
+        <field name="seller_ids" eval="[(0, 0, {'partner_id': ref('partner_supplier_grup_hotel'), 'price': 18000, 'min_qty': 1})]"/>
+    </record>
+
+    <record id="bhn_cincau" model="product.template">
+        <field name="name">Cincau Hijau</field>
+        <field name="default_code">BHN-009</field>
+        <field name="detailed_type">product</field>
+        <field name="categ_id" ref="categ_bahan"/>
+        <field name="uom_id" ref="uom.product_uom_kgm"/>
+        <field name="uom_po_id" ref="uom.product_uom_kgm"/>
+        <field name="standard_price">20000</field>
+        <field name="sale_ok" eval="False"/>
+        <field name="purchase_ok" eval="True"/>
+        <field name="route_ids" eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy')])]"/>
+        <field name="seller_ids" eval="[(0, 0, {'partner_id': ref('partner_supplier_grup_hotel'), 'price': 20000, 'min_qty': 1})]"/>
+    </record>
+
+    <record id="bhn_gula_aren" model="product.template">
+        <field name="name">Gula Aren Cair</field>
+        <field name="default_code">BHN-010</field>
+        <field name="detailed_type">product</field>
+        <field name="categ_id" ref="categ_bahan"/>
+        <field name="uom_id" ref="uom.product_uom_litre"/>
+        <field name="uom_po_id" ref="uom.product_uom_litre"/>
+        <field name="standard_price">35000</field>
+        <field name="sale_ok" eval="False"/>
+        <field name="purchase_ok" eval="True"/>
+        <field name="route_ids" eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy')])]"/>
+        <field name="seller_ids" eval="[(0, 0, {'partner_id': ref('partner_supplier_grup_hotel'), 'price': 35000, 'min_qty': 1})]"/>
+    </record>
+
+    <record id="bhn_santan" model="product.template">
+        <field name="name">Santan</field>
+        <field name="default_code">BHN-011</field>
+        <field name="detailed_type">product</field>
+        <field name="categ_id" ref="categ_bahan"/>
+        <field name="uom_id" ref="uom.product_uom_litre"/>
+        <field name="uom_po_id" ref="uom.product_uom_litre"/>
+        <field name="standard_price">25000</field>
+        <field name="sale_ok" eval="False"/>
+        <field name="purchase_ok" eval="True"/>
+        <field name="route_ids" eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy')])]"/>
+        <field name="seller_ids" eval="[(0, 0, {'partner_id': ref('partner_supplier_grup_hotel'), 'price': 25000, 'min_qty': 1})]"/>
+    </record>
+
+    <record id="bhn_es_batu" model="product.template">
+        <field name="name">Es Batu</field>
+        <field name="default_code">BHN-012</field>
+        <field name="detailed_type">product</field>
+        <field name="categ_id" ref="categ_bahan"/>
+        <field name="uom_id" ref="uom.product_uom_kgm"/>
+        <field name="uom_po_id" ref="uom.product_uom_kgm"/>
+        <field name="standard_price">3000</field>
+        <field name="sale_ok" eval="False"/>
+        <field name="purchase_ok" eval="True"/>
+        <field name="route_ids" eval="[(6, 0, [ref('purchase_stock.route_warehouse0_buy')])]"/>
+        <field name="seller_ids" eval="[(0, 0, {'partner_id': ref('partner_supplier_grup_hotel'), 'price': 3000, 'min_qty': 1})]"/>
+    </record>
+</odoo>

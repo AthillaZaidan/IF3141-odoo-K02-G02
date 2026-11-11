@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- IW-03: menu yang dijual (penamaan disamakan dengan POS). Harga jual DATA UJI. -->
+
+    <record id="mn_indomie_telur_kornet" model="product.template">
+        <field name="name">Indomie Goreng Telur Kornet</field>
+        <field name="default_code">MN-001</field>
+        <field name="detailed_type">consu</field>
+        <field name="categ_id" ref="categ_menu"/>
+        <field name="list_price">18000</field>
+        <field name="sale_ok" eval="True"/>
+        <field name="purchase_ok" eval="False"/>
+    </record>
+
+    <record id="mn_indomie_goreng" model="product.template">
+        <field name="name">Indomie Goreng</field>
+        <field name="default_code">MN-002</field>
+        <field name="detailed_type">consu</field>
+        <field name="categ_id" ref="categ_menu"/>
+        <field name="list_price">10000</field>
+        <field name="sale_ok" eval="True"/>
+        <field name="purchase_ok" eval="False"/>
+    </record>
+
+    <record id="mn_indomie_kuah_telur" model="product.template">
+        <field name="name">Indomie Kuah Telur</field>
+        <field name="default_code">MN-003</field>
+        <field name="detailed_type">consu</field>
+        <field name="categ_id" ref="categ_menu"/>
+        <field name="list_price">13000</field>
+        <field name="sale_ok" eval="True"/>
+        <field name="purchase_ok" eval="False"/>
+    </record>
+
+    <record id="mn_nasi_goreng" model="product.template">
+        <field name="name">Nasi Goreng</field>
+        <field name="default_code">MN-004</field>
+        <field name="detailed_type">consu</field>
+        <field name="categ_id" ref="categ_menu"/>
+        <field name="list_price">20000</field>
+        <field name="sale_ok" eval="True"/>
+        <field name="purchase_ok" eval="False"/>
+    </record>
+
+    <record id="mn_kerupuk_jadul" model="product.template">
+        <field name="name">Kerupuk Jadul</field>
+        <field name="default_code">MN-005</field>
+        <field name="detailed_type">consu</field>
+        <field name="categ_id" ref="categ_menu"/>
+        <field name="list_price">2000</field>
+        <field name="sale_ok" eval="True"/>
+        <field name="purchase_ok" eval="False"/>
+    </record>
+
+    <record id="mn_cincau_hijau" model="product.template">
+        <field name="name">Es Cincau Hijau</field>
+        <field name="default_code">MN-006</field>
+        <field name="detailed_type">consu</field>
+        <field name="categ_id" ref="categ_menu"/>
+        <field name="list_price">10000</field>
+        <field name="sale_ok" eval="True"/>
+        <field name="purchase_ok" eval="False"/>
+    </record>
+</odoo>
